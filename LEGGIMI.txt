@@ -1,4 +1,4 @@
-﻿PATCH ITALIANA PER ANIIMO - v32 (02/10/2026)
+﻿PATCH ITALIANA PER ANIIMO - v32 (01/10/2026)
 
 INSTALLAZIONE
 1. Estrai questa cartella in un punto qualsiasi (se è dentro uno zip).
