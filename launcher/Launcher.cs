@@ -53,37 +53,126 @@ class Launcher : Form
         return 0;
     }
 
+    static readonly Color Bg = Color.FromArgb(14, 18, 28), Panel2 = Color.FromArgb(24, 31, 46), Accent = Color.FromArgb(52, 152, 255), AccentHi = Color.FromArgb(92, 178, 255);
+    const int BannerH = 230;
+    Banner banner = new Banner();
+    Image bannerImg;
+
+    // Pannello con double buffering: immagine del gioco (cover-fit) + sfumatura + titolo.
+    class Banner : Panel
+    {
+        public Image Img;
+        public Banner() { DoubleBuffered = true; SetStyle(ControlStyles.ResizeRedraw, true); }
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            var g = e.Graphics; var r = ClientRectangle;
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            using (var br = new System.Drawing.Drawing2D.LinearGradientBrush(r, Color.FromArgb(40, 90, 170), Color.FromArgb(120, 60, 160), 35f)) g.FillRectangle(br, r);
+            if (Img != null)
+            {
+                float k = Math.Max((float)r.Width / Img.Width, (float)r.Height / Img.Height);
+                float w = Img.Width * k, h = Img.Height * k;
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.DrawImage(Img, (r.Width - w) / 2, (r.Height - h) / 2, w, h);
+            }
+            // sfumatura scura in basso per far leggere il testo e raccordare col resto della finestra
+            var fade = new Rectangle(0, r.Height / 4, r.Width, r.Height - r.Height / 4 + 1);
+            using (var br = new System.Drawing.Drawing2D.LinearGradientBrush(fade, Color.FromArgb(0, Bg), Color.FromArgb(255, Bg), 90f)) g.FillRectangle(br, fade);
+            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            using (var f1 = new Font("Segoe UI", 11f, FontStyle.Bold)) using (var f2 = new Font("Segoe UI Semibold", 26f, FontStyle.Bold))
+            {
+                g.DrawString("PATCH ITALIANA", f1, new SolidBrush(Color.FromArgb(220, AccentHi)), 30, r.Height - 118);
+                g.DrawString("ANIIMO", f2, new SolidBrush(Color.FromArgb(120, 0, 0, 0)), 30, r.Height - 96);
+                g.DrawString("ANIIMO", f2, Brushes.White, 28, r.Height - 98);
+            }
+        }
+    }
+
+    static void StyleButton(Button b, Color back, Color hover)
+    {
+        b.FlatStyle = FlatStyle.Flat; b.BackColor = back; b.ForeColor = Color.White; b.Cursor = Cursors.Hand;
+        b.FlatAppearance.BorderSize = 0; b.FlatAppearance.MouseOverBackColor = hover; b.FlatAppearance.MouseDownBackColor = back;
+        b.Font = new Font("Segoe UI Semibold", 10.5f, FontStyle.Bold);
+    }
+
     Launcher()
     {
         Text = "Aniimo - Patch Italiana";
-        ClientSize = new Size(640, 330);
+        ClientSize = new Size(760, 500);
         FormBorderStyle = FormBorderStyle.FixedSingle; MaximizeBox = false;
         StartPosition = FormStartPosition.CenterScreen;
-        BackColor = Color.FromArgb(16, 20, 24); ForeColor = Color.White;
+        BackColor = Bg; ForeColor = Color.White;
         Font = new Font("Segoe UI", 10f);
+        DoubleBuffered = true;
+        try { Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath); } catch { }
 
-        var title = new Label { Text = "PATCH ITALIANA PER ANIIMO", Font = new Font("Segoe UI", 16f, FontStyle.Bold), AutoSize = true, Location = new Point(24, 18) };
-        lblVer.Location = new Point(26, 56); lblVer.AutoSize = true; lblVer.ForeColor = Color.FromArgb(126, 200, 255);
-        var lblP = new Label { Text = "Cartella Aniimo_Data del gioco:", AutoSize = true, Location = new Point(26, 96) };
-        txtPath.Location = new Point(28, 122); txtPath.Width = 480;
-        btnBrowse.Text = "Sfoglia..."; btnBrowse.Location = new Point(520, 120); btnBrowse.Width = 92;
-        lblStatus.Location = new Point(26, 166); lblStatus.Size = new Size(590, 52);
-        prog.Location = new Point(28, 226); prog.Size = new Size(584, 14);
-        btnInstall.Text = "Installa / Aggiorna"; btnInstall.Location = new Point(28, 262); btnInstall.Size = new Size(190, 42);
-        btnPlay.Text = "Avvia Aniimo"; btnPlay.Location = new Point(228, 262); btnPlay.Size = new Size(190, 42);
-        btnRestore.Text = "Ripristina originale"; btnRestore.Location = new Point(428, 262); btnRestore.Size = new Size(184, 42);
+        banner.Location = new Point(0, 0); banner.Size = new Size(760, BannerH);
+        lblVer.AutoSize = true; lblVer.BackColor = Color.Transparent; lblVer.ForeColor = Color.FromArgb(200, 220, 240);
+        lblVer.Location = new Point(30, BannerH - 34); lblVer.Font = new Font("Segoe UI", 9.5f);
+        banner.Controls.Add(lblVer);
+
+        var lblP = new Label { Text = "Cartella Aniimo_Data del gioco", AutoSize = true, Location = new Point(30, BannerH + 6), ForeColor = Color.FromArgb(150, 165, 185), Font = new Font("Segoe UI", 9f) };
+        txtPath.Location = new Point(32, BannerH + 30); txtPath.Width = 586; txtPath.Font = new Font("Segoe UI", 10.5f);
+        txtPath.BackColor = Panel2; txtPath.ForeColor = Color.White; txtPath.BorderStyle = BorderStyle.FixedSingle;
+        btnBrowse.Text = "Sfoglia..."; btnBrowse.Location = new Point(630, BannerH + 28); btnBrowse.Size = new Size(100, 29);
+        lblStatus.Location = new Point(30, BannerH + 72); lblStatus.Size = new Size(700, 44); lblStatus.ForeColor = Color.FromArgb(215, 225, 238);
+        prog.Location = new Point(32, BannerH + 122); prog.Size = new Size(698, 8); prog.Style = ProgressBarStyle.Continuous;
+        btnInstall.Text = "Installa / Aggiorna"; btnInstall.Location = new Point(32, BannerH + 150); btnInstall.Size = new Size(260, 52);
+        btnPlay.Text = "▶  Avvia Aniimo"; btnPlay.Location = new Point(304, BannerH + 150); btnPlay.Size = new Size(260, 52);
+        btnRestore.Text = "Ripristina originale"; btnRestore.Location = new Point(576, BannerH + 150); btnRestore.Size = new Size(154, 52);
+        StyleButton(btnBrowse, Color.FromArgb(44, 56, 78), Color.FromArgb(60, 76, 104));
+        StyleButton(btnInstall, Color.FromArgb(32, 120, 210), AccentHi);
+        StyleButton(btnPlay, Color.FromArgb(34, 150, 90), Color.FromArgb(52, 180, 112));
+        StyleButton(btnRestore, Color.FromArgb(44, 56, 78), Color.FromArgb(60, 76, 104));
+        btnBrowse.Font = btnRestore.Font = new Font("Segoe UI", 9.5f);
+        // stato disabilitato leggibile (il tema Flat altrimenti lascia testo grigio su grigio)
         foreach (var b in new[] { btnBrowse, btnInstall, btnPlay, btnRestore })
-        { b.FlatStyle = FlatStyle.Flat; b.BackColor = Color.FromArgb(40, 52, 66); b.ForeColor = Color.White; b.FlatAppearance.BorderColor = Color.FromArgb(90, 110, 130); }
-        btnInstall.BackColor = Color.FromArgb(32, 110, 190);
-        txtPath.BackColor = Color.FromArgb(28, 34, 42); txtPath.ForeColor = Color.White; txtPath.BorderStyle = BorderStyle.FixedSingle;
-        Controls.AddRange(new Control[] { title, lblVer, lblP, txtPath, btnBrowse, lblStatus, prog, btnInstall, btnPlay, btnRestore });
+            b.EnabledChanged += delegate { b.Cursor = b.Enabled ? Cursors.Hand : Cursors.Default; b.Invalidate(); };
+        Controls.AddRange(new Control[] { banner, lblP, txtPath, btnBrowse, lblStatus, prog, btnInstall, btnPlay, btnRestore });
 
+        LoadBannerLocal();
         btnBrowse.Click += delegate { Browse(); };
         btnInstall.Click += async delegate { await Install(); };
         btnRestore.Click += async delegate { await Restore(); };
         btnPlay.Click += delegate { Play(); };
         txtPath.Leave += delegate { SaveCfg(); RefreshState(); };
         Shown += async delegate { await Startup(); };
+    }
+
+    // ---------- immagine del gioco ----------
+    // Ordine: risorsa incorporata (banner.jpg/png al momento della build) -> banner.* accanto all'exe -> copia in cache -> scaricata dal repo (banner.jpg accanto al manifest).
+    static Image LoadImg(byte[] b) { try { return Image.FromStream(new MemoryStream(b)); } catch { return null; } }
+    void SetBanner(Image img) { if (img == null) return; bannerImg = img; banner.Img = img; banner.Invalidate(); }
+
+    void LoadBannerLocal()
+    {
+        try
+        {
+            var asm = System.Reflection.Assembly.GetExecutingAssembly();
+            foreach (var n in asm.GetManifestResourceNames())
+                if (n.StartsWith("banner", StringComparison.OrdinalIgnoreCase))
+                    using (var s = asm.GetManifestResourceStream(n)) using (var ms = new MemoryStream()) { s.CopyTo(ms); SetBanner(LoadImg(ms.ToArray())); return; }
+        }
+        catch { }
+        foreach (var dir in new[] { AppDomain.CurrentDomain.BaseDirectory, AppDir })
+            foreach (var ext in new[] { "jpg", "png" })
+            {
+                try { var f = Path.Combine(dir, "banner." + ext); if (File.Exists(f)) { SetBanner(LoadImg(File.ReadAllBytes(f))); if (bannerImg != null) return; } } catch { }
+            }
+    }
+
+    async Task LoadBannerRemote()
+    {
+        if (bannerImg != null || manifestUrl == null || !manifestUrl.StartsWith("http")) return;
+        try
+        {
+            byte[] data = await Task.Run(() => { using (var wc = new WebClient()) return wc.DownloadData(new Uri(new Uri(manifestUrl), "banner.jpg")); });
+            var img = LoadImg(data);
+            if (img == null) return;
+            SetBanner(img);
+            try { Directory.CreateDirectory(AppDir); File.WriteAllBytes(Path.Combine(AppDir, "banner.jpg"), data); } catch { }
+        }
+        catch { }
     }
 
     // ---------- util ----------
@@ -164,6 +253,7 @@ class Launcher : Form
         Busy(true); Status("Controllo aggiornamenti...");
         await FetchManifest();
         Busy(false); RefreshState();
+        await LoadBannerRemote();
     }
 
     async Task FetchManifest()
