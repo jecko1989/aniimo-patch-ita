@@ -54,11 +54,11 @@ class Launcher : Form
     }
 
     static readonly Color Bg = Color.FromArgb(14, 18, 28), Panel2 = Color.FromArgb(24, 31, 46), Accent = Color.FromArgb(52, 152, 255), AccentHi = Color.FromArgb(92, 178, 255);
-    const int BannerH = 230;
+    const int BannerW = 640, BannerH = 360;
     Banner banner = new Banner();
     Image bannerImg;
 
-    // Pannello con double buffering: immagine del gioco (cover-fit) + sfumatura + titolo.
+    // Pannello con double buffering: immagine del gioco intera, adattata al riquadro.
     class Banner : Panel
     {
         public Image Img;
@@ -70,20 +70,14 @@ class Launcher : Form
             using (var br = new System.Drawing.Drawing2D.LinearGradientBrush(r, Color.FromArgb(40, 90, 170), Color.FromArgb(120, 60, 160), 35f)) g.FillRectangle(br, r);
             if (Img != null)
             {
-                float k = Math.Max((float)r.Width / Img.Width, (float)r.Height / Img.Height);
-                float w = Img.Width * k, h = Img.Height * k;
                 g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                g.DrawImage(Img, (r.Width - w) / 2, (r.Height - h) / 2, w, h);
+                // il riquadro e' 16:9 come l'immagine (1920x1080): si disegna intera, senza tagli
+                g.DrawImage(Img, r);
             }
-            // sfumatura scura in basso per far leggere il testo e raccordare col resto della finestra
-            var fade = new Rectangle(0, r.Height / 4, r.Width, r.Height - r.Height / 4 + 1);
-            using (var br = new System.Drawing.Drawing2D.LinearGradientBrush(fade, Color.FromArgb(0, Bg), Color.FromArgb(255, Bg), 90f)) g.FillRectangle(br, fade);
-            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            using (var f1 = new Font("Segoe UI", 11f, FontStyle.Bold)) using (var f2 = new Font("Segoe UI Semibold", 26f, FontStyle.Bold))
+            else
             {
-                g.DrawString("PATCH ITALIANA", f1, new SolidBrush(Color.FromArgb(220, AccentHi)), 30, r.Height - 118);
-                g.DrawString("ANIIMO", f2, new SolidBrush(Color.FromArgb(120, 0, 0, 0)), 30, r.Height - 96);
-                g.DrawString("ANIIMO", f2, Brushes.White, 28, r.Height - 98);
+                g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+                using (var f2 = new Font("Segoe UI Semibold", 26f, FontStyle.Bold)) g.DrawString("ANIIMO", f2, Brushes.White, 28, r.Height - 70);
             }
         }
     }
@@ -98,7 +92,7 @@ class Launcher : Form
     Launcher()
     {
         Text = "Aniimo - Patch Italiana";
-        ClientSize = new Size(760, 500);
+        ClientSize = new Size(BannerW, BannerH + 248);
         FormBorderStyle = FormBorderStyle.FixedSingle; MaximizeBox = false;
         StartPosition = FormStartPosition.CenterScreen;
         BackColor = Bg; ForeColor = Color.White;
@@ -106,20 +100,19 @@ class Launcher : Form
         DoubleBuffered = true;
         try { Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath); } catch { }
 
-        banner.Location = new Point(0, 0); banner.Size = new Size(760, BannerH);
-        lblVer.AutoSize = true; lblVer.BackColor = Color.Transparent; lblVer.ForeColor = Color.FromArgb(200, 220, 240);
-        lblVer.Location = new Point(30, BannerH - 34); lblVer.Font = new Font("Segoe UI", 9.5f);
-        banner.Controls.Add(lblVer);
+        banner.Location = new Point(0, 0); banner.Size = new Size(BannerW, BannerH);
+        lblVer.AutoSize = true;  lblVer.ForeColor = Color.FromArgb(200, 220, 240);
+        lblVer.Location = new Point(30, BannerH + 4); lblVer.Font = new Font("Segoe UI", 9.5f);
 
-        var lblP = new Label { Text = "Cartella Aniimo_Data del gioco", AutoSize = true, Location = new Point(30, BannerH + 6), ForeColor = Color.FromArgb(150, 165, 185), Font = new Font("Segoe UI", 9f) };
-        txtPath.Location = new Point(32, BannerH + 30); txtPath.Width = 586; txtPath.Font = new Font("Segoe UI", 10.5f);
+        var lblP = new Label { Text = "Cartella Aniimo_Data del gioco", AutoSize = true, Location = new Point(30, (BannerH + 22 + 6)), ForeColor = Color.FromArgb(150, 165, 185), Font = new Font("Segoe UI", 9f) };
+        txtPath.Location = new Point(32, (BannerH + 22 + 30)); txtPath.Width = 484; txtPath.Font = new Font("Segoe UI", 10.5f);
         txtPath.BackColor = Panel2; txtPath.ForeColor = Color.White; txtPath.BorderStyle = BorderStyle.FixedSingle;
-        btnBrowse.Text = "Sfoglia..."; btnBrowse.Location = new Point(630, BannerH + 28); btnBrowse.Size = new Size(100, 29);
-        lblStatus.Location = new Point(30, BannerH + 72); lblStatus.Size = new Size(700, 44); lblStatus.ForeColor = Color.FromArgb(215, 225, 238);
-        prog.Location = new Point(32, BannerH + 122); prog.Size = new Size(698, 8); prog.Style = ProgressBarStyle.Continuous;
-        btnInstall.Text = "Installa / Aggiorna"; btnInstall.Location = new Point(32, BannerH + 150); btnInstall.Size = new Size(260, 52);
-        btnPlay.Text = "▶  Avvia Aniimo"; btnPlay.Location = new Point(304, BannerH + 150); btnPlay.Size = new Size(260, 52);
-        btnRestore.Text = "Ripristina originale"; btnRestore.Location = new Point(576, BannerH + 150); btnRestore.Size = new Size(154, 52);
+        btnBrowse.Text = "Sfoglia..."; btnBrowse.Location = new Point(530, (BannerH + 22 + 28)); btnBrowse.Size = new Size(78, 29);
+        lblStatus.Location = new Point(30, (BannerH + 22 + 72)); lblStatus.Size = new Size(580, 44); lblStatus.ForeColor = Color.FromArgb(215, 225, 238);
+        prog.Location = new Point(32, (BannerH + 22 + 122)); prog.Size = new Size(576, 8); prog.Style = ProgressBarStyle.Continuous;
+        btnInstall.Text = "Installa / Aggiorna"; btnInstall.Location = new Point(32, (BannerH + 22 + 150)); btnInstall.Size = new Size(192, 52);
+        btnPlay.Text = "▶  Avvia Aniimo"; btnPlay.Location = new Point(234, (BannerH + 22 + 150)); btnPlay.Size = new Size(192, 52);
+        btnRestore.Text = "Ripristina originale"; btnRestore.Location = new Point(436, (BannerH + 22 + 150)); btnRestore.Size = new Size(172, 52);
         StyleButton(btnBrowse, Color.FromArgb(44, 56, 78), Color.FromArgb(60, 76, 104));
         StyleButton(btnInstall, Color.FromArgb(32, 120, 210), AccentHi);
         StyleButton(btnPlay, Color.FromArgb(34, 150, 90), Color.FromArgb(52, 180, 112));
@@ -128,7 +121,7 @@ class Launcher : Form
         // stato disabilitato leggibile (il tema Flat altrimenti lascia testo grigio su grigio)
         foreach (var b in new[] { btnBrowse, btnInstall, btnPlay, btnRestore })
             b.EnabledChanged += delegate { b.Cursor = b.Enabled ? Cursors.Hand : Cursors.Default; b.Invalidate(); };
-        Controls.AddRange(new Control[] { banner, lblP, txtPath, btnBrowse, lblStatus, prog, btnInstall, btnPlay, btnRestore });
+        Controls.AddRange(new Control[] { banner, lblVer, lblP, txtPath, btnBrowse, lblStatus, prog, btnInstall, btnPlay, btnRestore });
 
         LoadBannerLocal();
         btnBrowse.Click += delegate { Browse(); };
