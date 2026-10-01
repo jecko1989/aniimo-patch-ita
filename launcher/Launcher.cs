@@ -84,7 +84,7 @@ class Launcher : Form
 
     static void StyleButton(Button b, Color back, Color hover)
     {
-        b.FlatStyle = FlatStyle.Flat; b.BackColor = back; b.ForeColor = Color.White; b.Cursor = Cursors.Hand;
+        b.FlatStyle = FlatStyle.Flat; b.Tag = back; b.BackColor = back; b.ForeColor = Color.White; b.Cursor = Cursors.Hand;
         b.FlatAppearance.BorderSize = 0; b.FlatAppearance.MouseOverBackColor = hover; b.FlatAppearance.MouseDownBackColor = back;
         b.Font = new Font("Segoe UI Semibold", 10.5f, FontStyle.Bold);
     }
@@ -120,7 +120,12 @@ class Launcher : Form
         btnBrowse.Font = btnRestore.Font = new Font("Segoe UI", 9.5f);
         // stato disabilitato leggibile (il tema Flat altrimenti lascia testo grigio su grigio)
         foreach (var b in new[] { btnBrowse, btnInstall, btnPlay, btnRestore })
-            b.EnabledChanged += delegate { b.Cursor = b.Enabled ? Cursors.Hand : Cursors.Default; b.Invalidate(); };
+            b.EnabledChanged += delegate
+            {
+                b.Cursor = b.Enabled ? Cursors.Hand : Cursors.Default;
+                b.BackColor = b.Enabled ? (Color)b.Tag : Color.FromArgb(30, 36, 48);
+                b.ForeColor = b.Enabled ? Color.White : Color.FromArgb(100, 112, 130);
+            };
         Controls.AddRange(new Control[] { banner, lblVer, lblP, txtPath, btnBrowse, lblStatus, prog, btnInstall, btnPlay, btnRestore });
 
         LoadBannerLocal();
@@ -128,7 +133,8 @@ class Launcher : Form
         btnInstall.Click += async delegate { await Install(); };
         btnRestore.Click += async delegate { await Restore(); };
         btnPlay.Click += delegate { Play(); };
-        txtPath.Leave += delegate { SaveCfg(); RefreshState(); };
+        txtPath.TextChanged += delegate { if (!cli) RefreshState(); };
+        txtPath.Leave += delegate { SaveCfg(); };
         Shown += async delegate { await Startup(); };
     }
 
@@ -278,7 +284,7 @@ class Launcher : Form
         btnRestore.Enabled = ok && File.Exists(Path.Combine(BackupDir, "LuaScripts.xdf"));
         int inst = InstalledVersion(), rem = RemoteVersion();
         lblVer.Text = manifest == null ? "Versione online: n/d" : "Versione online: v" + rem + " (" + manifest["date"] + ")   |   Installata: " + (inst > 0 ? "v" + inst : "nessuna");
-        if (!ok) { btnInstall.Enabled = false; Status("Indica la cartella Aniimo_Data del gioco (quella che contiene cvs\\res\\lua\\LuaScripts.xdf)."); return; }
+        if (!ok) { btnInstall.Enabled = false; Status(GameDir.Length == 0 ? "Indica la cartella Aniimo_Data del gioco con \"Sfoglia...\"." : "Cartella non valida: non trovo cvs\\res\\lua\\LuaScripts.xdf al suo interno. Seleziona la cartella Aniimo_Data del gioco."); return; }
         btnInstall.Enabled = manifest != null;
         if (manifest == null) return;
         if (inst == rem) { btnInstall.Text = "Reinstalla"; Status("Patch aggiornata. Premi \"Avvia Aniimo\" e scegli la lingua \"Italiano\" nel menu."); }
