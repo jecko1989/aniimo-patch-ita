@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Tag della release (es. launcher-v6)"
+        description: "Tag della release (es. launcher-v7)"
         required: true
 permissions:
   contents: write
