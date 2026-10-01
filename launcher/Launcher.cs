@@ -26,7 +26,7 @@ class Launcher : Form
     TextBox txtPath = new TextBox();
     Label lblStatus = new Label(), lblVer = new Label();
     ProgressBar prog = new ProgressBar();
-    Button btnBrowse = new Button(), btnInstall = new Button(), btnPlay = new Button(), btnRestore = new Button();
+    Button btnBrowse = new Button(), btnInstall = new Button(), btnPlay = new Button(), btnRestore = new Button(), btnRefresh = new Button();
     Dictionary<string, object> manifest;
     Dictionary<string, object> cfg = new Dictionary<string, object>();
     string manifestUrl;
@@ -117,18 +117,24 @@ class Launcher : Form
         StyleButton(btnInstall, Color.FromArgb(32, 120, 210), AccentHi);
         StyleButton(btnPlay, Color.FromArgb(34, 150, 90), Color.FromArgb(52, 180, 112));
         StyleButton(btnRestore, Color.FromArgb(44, 56, 78), Color.FromArgb(60, 76, 104));
+        btnRefresh.Text = "↻"; btnRefresh.Size = new Size(34, 30); btnRefresh.Location = new Point(BannerW - 44, 10);
+        StyleButton(btnRefresh, Color.FromArgb(44, 56, 78), Color.FromArgb(60, 76, 104));
+        btnRefresh.Font = new Font("Segoe UI Symbol", 12f);
+        new ToolTip().SetToolTip(btnRefresh, "Cerca aggiornamenti della traduzione");
         btnBrowse.Font = btnRestore.Font = new Font("Segoe UI", 9.5f);
         // stato disabilitato leggibile (il tema Flat altrimenti lascia testo grigio su grigio)
-        foreach (var b in new[] { btnBrowse, btnInstall, btnPlay, btnRestore })
+        foreach (var b in new[] { btnBrowse, btnInstall, btnPlay, btnRestore, btnRefresh })
             b.EnabledChanged += delegate
             {
                 b.Cursor = b.Enabled ? Cursors.Hand : Cursors.Default;
                 b.BackColor = b.Enabled ? (Color)b.Tag : Color.FromArgb(30, 36, 48);
                 b.ForeColor = b.Enabled ? Color.White : Color.FromArgb(100, 112, 130);
             };
-        Controls.AddRange(new Control[] { banner, lblVer, lblP, txtPath, btnBrowse, lblStatus, prog, btnInstall, btnPlay, btnRestore });
+        Controls.AddRange(new Control[] { banner, lblVer, lblP, txtPath, btnBrowse, lblStatus, prog, btnInstall, btnPlay, btnRestore, btnRefresh });
+        btnRefresh.BringToFront();
 
         LoadBannerLocal();
+        btnRefresh.Click += async delegate { Busy(true); Status("Controllo aggiornamenti..."); await FetchManifest(); Busy(false); RefreshState(); };
         btnBrowse.Click += delegate { Browse(); };
         btnInstall.Click += async delegate { await Install(); };
         btnRestore.Click += async delegate { await Restore(); };
@@ -177,7 +183,7 @@ class Launcher : Form
     // ---------- util ----------
     void Status(string s) { if (cli) { Console.WriteLine(s); return; } if (InvokeRequired) { Invoke(new Action<string>(Status), s); return; } lblStatus.Text = s; }
     void Progress(int v) { if (cli) return; if (InvokeRequired) { Invoke(new Action<int>(Progress), v); return; } prog.Value = Math.Max(0, Math.Min(100, v)); }
-    void Busy(bool b) { if (cli) return; if (InvokeRequired) { Invoke(new Action<bool>(Busy), b); return; } btnInstall.Enabled = btnRestore.Enabled = btnBrowse.Enabled = !b; }
+    void Busy(bool b) { if (cli) return; if (InvokeRequired) { Invoke(new Action<bool>(Busy), b); return; } btnInstall.Enabled = btnRestore.Enabled = btnBrowse.Enabled = btnRefresh.Enabled = !b; }
     static JavaScriptSerializer Js() { var j = new JavaScriptSerializer(); j.MaxJsonLength = int.MaxValue; return j; }
     string GameDir { get { return txtPath.Text.Trim().Trim('"'); } }
     string LuaDir { get { return Path.Combine(GameDir, @"cvs\res\lua"); } }
