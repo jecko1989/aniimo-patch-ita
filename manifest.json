@@ -1,19 +1,19 @@
 {
-  "version": 28,
-  "date": "01/10/2026",
-  "notes": "Revisione frasi lunghe in corso (v28 parziale): piu' nomi Aniimo/luoghi in originale, glossario uniforme.",
+  "version": 29,
+  "date": "02/10/2026",
+  "notes": "Revisione completa di tutte le stringhe: nomi Aniimo/PNG/luoghi/abilita' in originale, BREAK uniforme, glossario coerente.",
   "payloads": [
     {
       "id": "bin",
       "url": "Compress_id_ID.bin.gz",
-      "sha256": "12e7da94cce9cbaf2a6b24d845293404167074ffa32f1e01fd0635b30693998e",
-      "size": 4487720
+      "sha256": "96872f625c846f507f818cfdebefa7f66eb34c98ed2a6d9cad0ce572c4d1e26c",
+      "size": 4421387
     },
     {
       "id": "json",
       "url": "NewTextMap_id_ID.json.gz",
-      "sha256": "b10ec78f794c023c8895aede7f6d0bfba414da169f077da5ee0e1a99e7b370a9",
-      "size": 6522747
+      "sha256": "2b507572f35fe383a012a63b276353537ddd98c43ee745c4b952232438cb1e97",
+      "size": 6520885
     }
   ],
   "apply": [
