@@ -1,14 +1,10 @@
 name: Build launcher
 on:
-  push:
-    branches: [ccr-106339ce-lw27fe]
-    paths: [".github/workflows/launcher.yml"]
   workflow_dispatch:
     inputs:
       tag:
-        description: "Tag della release (es. launcher-v5)"
+        description: "Tag della release (es. launcher-v6)"
         required: true
-        default: launcher-v5
 permissions:
   contents: write
 jobs:
@@ -27,5 +23,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "${{ inputs.tag || 'launcher-v5' }}" launcher/AniimoPatchITA.exe --target "${{ github.sha }}" \
+          gh release create "${{ inputs.tag }}" launcher/AniimoPatchITA.exe --target "${{ github.sha }}" \
             --title "Launcher" --notes "AniimoPatchITA.exe: scarica e applica la patch italiana di Aniimo (con backup e ripristino). Nuova grafica con immagine del gioco. Richiede solo Windows 10/11."
