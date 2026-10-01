@@ -1,18 +1,18 @@
 {
-  "version": 30,
+  "version": 31,
   "date": "02/10/2026",
-  "notes": "Terminologia finale: Rift, Branch, Homeland, Holo-Battle, Egg Heist, Primegy, Aromathyst, Starine, Polaris Institute, Sanctum e nomi inventati in originale.",
+  "notes": "",
   "payloads": [
     {
       "id": "bin",
       "url": "Compress_id_ID.bin.gz",
-      "sha256": "49b6d55d0af10d0131af341e9d37a10cc1230851c6850df6a10980fd03a30011",
-      "size": 4409269
+      "sha256": "dbe321117e5e7a08a876465af2708f1428c30ccc1a0a3bfc77b70600dd9794b6",
+      "size": 4409147
     },
     {
       "id": "json",
       "url": "NewTextMap_id_ID.json.gz",
-      "sha256": "08936f0ceb06ce6f413d2c548d92352fc5e1ec0a9f538e3d8b1848fc26de7b54",
+      "sha256": "b171f45ef2e851c67f22f66d2f7ffcb7661c794b23c4a70c9aaae53e942b4a3e",
       "size": 6520709
     }
   ],
