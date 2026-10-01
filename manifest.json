@@ -1,0 +1,30 @@
+{
+  "version": 27,
+  "date": "01/10/2026",
+  "notes": "Revisione completa: nomi Aniimo/PNG/luoghi/abilita' in originale, BREAK uniforme, termini coerenti.",
+  "payloads": [
+    {
+      "id": "bin",
+      "url": "Compress_id_ID.bin.gz",
+      "sha256": "490aea9c8500e82c456952b235f69c39e1b3f8f628fd11f7a9de1ac89b176dfe",
+      "size": 4642477
+    },
+    {
+      "id": "json",
+      "url": "NewTextMap_id_ID.json.gz",
+      "sha256": "587e1398d1e21b9780bf720593ddd29e12e96bbe1010b8f4b5ffc6cf8865806d",
+      "size": 6525695
+    }
+  ],
+  "apply": [
+    {
+      "payload": "bin",
+      "loose": "LuaScripts/Data/I18N/Compress_id_ID.bin",
+      "xdfEntry": "xfs/luascripts/Data/I18N/Compress_id_ID.bin"
+    },
+    {
+      "payload": "json",
+      "xdfEntry": "xfs/luascripts/Data/I18N/NewTextMap_id_ID.json"
+    }
+  ]
+}
