@@ -64,6 +64,7 @@ for k in final:
         t = t.replace('Istituto Polaris', 'Polaris Institute')
     if re.search(r'sanctum', e, re.I):
         t = re.sub(r'[Ss]antuari(?:o)?', 'Sanctum', t)
+    t = t.replace('Operation: Egg Heist', 'Operazione: Egg Heist')
     t = t.replace('Moondew Radish', 'Ravanello Moondew').replace('Ravanello rugiadalunare', 'Ravanello Moondew')
     t = re.sub(r'([Pp]eperoncino) (?:di |della )?(?:luna crescente|lunacera)', r' della luna crescente', t)
     final[k] = t
