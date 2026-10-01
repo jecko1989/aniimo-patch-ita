@@ -1,4 +1,4 @@
-﻿PATCH ITALIANA PER ANIIMO - v29 (02/10/2026)
+﻿PATCH ITALIANA PER ANIIMO - v30 (02/10/2026)
 
 INSTALLAZIONE
 1. Estrai questa cartella in un punto qualsiasi (se è dentro uno zip).
@@ -14,7 +14,7 @@ NOTE
 - Dopo un aggiornamento del gioco va installata una patch rigenerata:
   se il gioco risulta più recente della patch, l'installer te lo segnala.
 
-NOVITA' v29
+NOVITA' v30
 - Nomi di Aniimo, PNG, luoghi e abilita' rimasti in originale; BREAK sempre "BREAK".
 - Terminologia uniformata e ~19.000 stringhe corrette.
 

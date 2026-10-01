@@ -37,3 +37,14 @@ Se hai un dubbio che serve all'utente (termine ambiguo, scelta di glossario), ag
 - "RV Lv. N" = "Camper Liv. N" (accettato); "RV Park" resta inglese.
 - Frasi lunghe (dialoghi, descrizioni, missioni): controlla soprattutto senso fedele all'inglese, naturalezza, nomi/BREAK/sigle secondo le regole, coerenza col glossario. Non riscrivere per gusto se il testo e' corretto.
 - Elemento Psychic = "Psico".
+
+## DECISIONI FINALI (risposte dell'utente alle domande dei revisori) - hanno la precedenza su tutto il resto
+- **Rift** resta SEMPRE "Rift" in inglese (anche "Vein Rift", "Aniimo Rift", "Imo Rift", "Rift Beacon(s)", "Rift Challenge"...). Mai Faglia/Frattura/Fenditura/Squarcio. Articoli maschili: il Rift, i Rift, dal Rift.
+- **Branch** (luogo/albero di Vena, "Breezy Plains Branch", "the Branch") resta "Branch". Se invece sono rami veri di un albero (es. rami di Lumin Amber) -> "ramo/rami". Mai "Sezione"/"Filiale".
+- **Homeland** (funzione/luogo di gioco) resta "Homeland". Nel testo narrativo "build a new homeland" = "patria". Home = Casa.
+- **Holo-Battle Interlink**, **Holo-Battle Sim**, **Holo-Battle** restano in inglese. "Holo-gizmo" = "Holo-congegno". Mai "Olo-".
+- **Operation: Egg Heist** / **Egg Heist** (modalita'/evento) restano in inglese. I titoli di grado (Egg Emperor, ...) si traducono.
+- Restano in inglese e invariabili: **Primegy**, **Aromathyst** (anche plurale), **Starine/Starines** (-> "Starine"), **Polaris Institute**, **Sanctum** (anche generico: il Sanctum, i Sanctum), nomi di reparti (**Battle Art Department**, **Pathfinding**, **Aniimology**), **Glimmer** (valuta). Lumin Amber = "Ambra Lumin". Dewdrop Crystal = "Cristallo di rugiada".
+- Nomi inventati di Aniimo/piante/cibi/luoghi/PNG restano in inglese: Dawndelion, Dazeshroom, Marigold, Moondew, Lunashroom, Fluffroom, Tartball, Tuftball, Blastcap, Ember Charburger, Emberbud, Duskwhisper, Flop Turtle, Watercolor, Windglider, Echonite, Bombshroom, Chickpsea, Miricube, Captain Spud, Aeon, Thornblade(s), Budsquire(s), Veinsource Cocoon, Frostburst Punk, Little Lightning Chirp, Shadowthorn Phantom, Totem Square, Tufties, Radiant Waveglow, Glimmering Driftshadow, Anii Apartment, Habi-Cube, Hall of Memories, Crystal Cave/Cavern, Pawprint Shop, Chill Street, Coilstrike Club, Breezy Plains.
+- Titoli di abilita'/talenti/mosse/buff (anche quando incerti) restano in inglese.
+- Elemental/Spatial Counter(s) = "Contrasto/i elementale/i" / "Contrasto/i spaziale/i". Hatchinator = "Incubatrice". Cloak = "Cloak". Burst State = "stato Burst".

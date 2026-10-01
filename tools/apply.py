@@ -47,6 +47,24 @@ for f in sorted(glob.glob(W + '/out/*.jsonl')):
         nch += 1
 for k in final:                      # 'Alpha' mai tradotto
     if re.search(r'\bAlpha\b', en[k]): final[k] = re.sub(r'\b[Aa]lfa\b', 'Alpha', final[k])
+
+# Titoli di abilita'/talenti/mosse e nomi inventati segnalati dai revisori: restano in inglese (decisione dell'utente)
+KEEP_EN = set("""Charged Blow|Charged Geyser|Charged Impact|Charge Sweep|Charged Lightning Strike|Battle Fervor|Bastion of Iron|Biting Wind|Blind Panic|Bloodthirst|Boiling Blood|Body of Iron|Born for More|Blade Bloom|Hunt|Hunter's Instinct|Hunting Instinct|Hustle|Hypnotic Spores|Flame Cyclone|Fission Needles|Flame Fist Combo|High Jump|High-Speed Air Blade|High-Voltage Dash|Healing Rose|Healing Angel|Pact: Ferocious Fang|Overflowing Power|Mushroom Convergence|Mushroom Fanatic|Nightbloom Owl Wings|Delayed Pain|Desperate Potential|Desperation Surge|Fully Loaded I|Fully Loaded II|Fully Loaded III|Spring of Life|Spotlight Moment|Sword of Bravery|Sword of Protection|Quick Training|Training Mastery|Perfect Counter|Lucky Strike|Blink|Haste|Weaken|Waltz|Triple Movement|Symphony of Life|Emergency Repair|Emergency Evasion|Emergency Treatment|Weakness Mark|Fox Mark|Soothe|Water Pillar|Water Splash|Holy Awakening|Holy Roar|Holy Storm|Joint Defense|Judgment Storm|Keen Senses|Layered Strength|Claw of Madness|Cleaving Waves|Close-Quarter Strike|Cloudwalk|Cloud Shield|Comet Aureus|Gale Guard|Frostbite Sunder|Coral Impact|Crimson Blade|Critical Strike I|Crushing Momentum|Energy Burst|Enhanced Lightning Blade|Essence Leech|Ethereal Light Wave|Unyielding Will|Veiled Truth|Vein Abundance|Starbound Journey|Safe Evacuation|Safe Expansion I|Safe Expansion II|Safe Reinforcement|Refined Gaze|Reflective Barrier|Shield of Golden Protection|Shield of Golden Tenacity|Shadow Domain|Shock Wave|Shooting Stars|Silent Step|Silent Owl Spirit|Soundwave Clash|Soundwave Shake|Windborn Stamps|Pathfinding|Battle Art Department|Aniimology""".split('|'))
+for k in final:
+    if en[k].strip() in KEEP_EN: final[k] = en[k]
+
+# ripuliture meccaniche finali (decisioni dell'utente)
+_ART = {"dall'": "dal ", "dell'": "del ", "all'": "al ", "nell'": "nel ", "sull'": "sul ", "l'": "il ", "L'": "Il "}
+for k in final:
+    e, t = en[k], final[k]
+    if 'Holo' in e:
+        t = re.sub(r"\b([Oo])lo-", lambda m: m.group(1) + 'lo-' if False else 'Holo-', t)
+    if 'Polaris Institute' in e:
+        t = re.sub(r"(dall'|dell'|all'|nell'|sull'|\bl'|\bL')Istituto Polaris", lambda m: _ART[m.group(1)] + 'Polaris Institute', t)
+        t = t.replace('Istituto Polaris', 'Polaris Institute')
+    if re.search(r'sanctum', e, re.I):
+        t = re.sub(r'[Ss]antuari(?:o)?', 'Sanctum', t)
+    final[k] = t
 final['1823332970'] = 'Italiano'    # etichetta dello slot lingua (era Indonesia)
 print('alfa residui:', sum(1 for k in final if 'lfa' in final[k] and 'Alpha' in en[k]))
 print('correzioni applicate:', nch, '| rifiutate:', len(rej), '| domande:', len(questions))

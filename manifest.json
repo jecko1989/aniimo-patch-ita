@@ -1,19 +1,19 @@
 {
-  "version": 29,
+  "version": 30,
   "date": "02/10/2026",
-  "notes": "Revisione completa di tutte le stringhe: nomi Aniimo/PNG/luoghi/abilita' in originale, BREAK uniforme, glossario coerente.",
+  "notes": "Terminologia finale: Rift, Branch, Homeland, Holo-Battle, Egg Heist, Primegy, Aromathyst, Starine, Polaris Institute, Sanctum e nomi inventati in originale.",
   "payloads": [
     {
       "id": "bin",
       "url": "Compress_id_ID.bin.gz",
-      "sha256": "96872f625c846f507f818cfdebefa7f66eb34c98ed2a6d9cad0ce572c4d1e26c",
-      "size": 4421387
+      "sha256": "49b6d55d0af10d0131af341e9d37a10cc1230851c6850df6a10980fd03a30011",
+      "size": 4409269
     },
     {
       "id": "json",
       "url": "NewTextMap_id_ID.json.gz",
-      "sha256": "2b507572f35fe383a012a63b276353537ddd98c43ee745c4b952232438cb1e97",
-      "size": 6520885
+      "sha256": "08936f0ceb06ce6f413d2c548d92352fc5e1ec0a9f538e3d8b1848fc26de7b54",
+      "size": 6520709
     }
   ],
   "apply": [
