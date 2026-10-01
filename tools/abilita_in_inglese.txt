@@ -1,0 +1,282 @@
+Adversity Charge
+Adversity Parry
+Adversity Surge
+Aerial Spin
+Amethyst Glide
+Annihilation Bomb
+Aurora Flow
+Aurora Ice Shield
+Backstab
+Barrage
+Battle Rhythm
+Battlebond
+Battlebond III
+Battlelust
+Become the Pinball
+Black Hole Generation
+White Hole Generation
+Blade Reversal
+Blasting Roses
+Bubble Gun
+Bulwark
+Chain Lightening
+Chain Ultimate
+Brain Crash
+Brute Force Works Wonders
+Blade Gap Mastery
+Bounce Toward the Stars
+Charge for Love
+Against the Beat
+Air Superiority
+Anticipate the Move
+Born to Dig
+Born to Meddle
+Born to Ride the Wind
+Built for Pressure
+Binocular Focus
+Burst of Red
+Aeroboard
+ATK Aura
+REGEN Aura
+Defense Command
+Element Synergy
+Elemental Shot
+Leader's Call
+Mega Mallet
+Plushie Pummel
+Power Break
+Quick Twine
+Robust Physique I
+Robust Physique II
+Robust Physique III
+Robust Physique IV
+Robust Physique V
+Silent Step
+Sonic Slam
+Swoleshroom
+Symphony of Life
+Tweetin' Target
+Gravity Pull
+Cloudsoft Slumber
+Contempt of the Strong
+Converging Sense
+Core Descent
+Courage Born of Fear
+Courageous Wit
+Crossfire
+Crosswind
+Cyclone
+Darknight Shadow
+Deadly Steel Claws
+Detect Weakness
+Devastation Cannon
+Disintegration
+Dispel Sadness
+Don't Panic in a Crisis
+Don't Underestimate the Spark
+Double Delight
+Dragon's Vision
+Dreamdrift Waltz
+Dreamsong
+Drum Whirl
+Earth Shield
+Earth Spikes
+Ebb Tide
+Echoing Grimoire
+Efficient Support
+Elastic Potential
+Electric Discharge
+Electric Flow
+Electromagnetic Shield
+Elegant Waltz
+Elemental Switch
+Elemental Ward
+Elusive Presence
+Energized Start
+Energy Absorption and Conversion
+Energy Surge
+Enhanced Bubble
+Enhanced Cloud Shield
+Enhanced Counter
+Enhanced Normal Attack
+Everything Has a Weakness
+Evenly Matched
+Extreme Gusto
+Extreme Output
+Extreme Speed Lightning
+Extrovert Effort
+Eye of Potential
+Eyes Locked
+Fatal Shot
+Fears Become Reality
+Fearsome Heat
+Feather Bathed in Light
+Featherblade Waltz
+Feathered Breeze
+Feathered Dawn
+Featherlight Lift
+Feint
+Ferocious Fang
+Fierce Fang
+Final Stand
+Fingertip Sparks
+Fireball Split Shot
+Flame Dive
+Flame Shield
+Flame Spiral
+Flame Vortex
+Flameblade
+Flamewreath Armor
+Flaming Claws
+Flash Freeze
+Flawless Defense
+Floral Burst
+Floral Storm
+Flowing Water Shield
+Flowing Water Slash
+Flustered Fury
+Flutter Heal
+Flying Kick
+Focused Beam
+Focused Impact
+Focused Strike
+Following the Strong
+Forming Floating Ice
+Fortune's Favor
+Fractured Echo
+Fragrance Bomb
+Fragrance Shield
+Freedom's Breeze
+Freezing Beam
+Freezing Claws
+Frequency Overload
+Frost Condensation
+Frost Edge
+Frost Fangblade
+Frost Spike
+Frostlit Trace
+Frostwolf Edge
+Frostwolf's Edge
+Frostwolf Huntshadow
+Frostwolf Ice Soul
+Frostwolf Spirit
+Full Barrage
+Gale-Chasing
+Gentle Healing Water
+Glimmermist Whispers
+Grassland Assimilation
+Guidance of the Core
+Healing Aura
+Healing Blossoms
+Healing Flame
+Healing Spirit
+Healing Tune
+Healing Waves
+Heart's Resonance
+Helios' Awakening
+Helios' Judgment
+Here Comes the Bubble
+Hypnotic Smoke
+Ice Burst
+Ice Shield
+Ice Spikes
+Icy Finish
+Ironclad Armament
+Irresistible Charm
+Lightning Dart
+Lightning Lock
+Lightning Needle
+Lingering Malice
+Lingering Omen
+Lingering Will
+Loaded for Bear
+Lunar Erosion
+Luring Light
+Mass Surge
+Measured Strike
+Mobile Sweep
+Momentum
+Nimble Dodge
+Nimble Sprouting
+Nightbat Shadow
+Nighttime Flames
+No Retreat
+None Can Stop You
+Overcharged Claw Strike
+Overcharged Shield
+Owl's Poise
+Owlish Elegance
+Owlshade Nightfall
+Parasitic Aggravation
+Parasitic Domain
+Parasitic Shock Wave
+Pillar of Fire
+Pinecone Bomb
+Power of the Crowd
+Power Surge
+Prismana's Embrace
+Prismana's Luminous Veil
+Protective Healing
+Pursuit
+Radiant Dart
+Radiant Dreamshadow
+Rage Outburst
+Rain of Blessing
+Rapid Volley
+Raging Fire
+Raging Flame
+Reborn in Flames
+Resolute Defense
+Rocksteady Heart
+Roar of the Bouldus
+Rousing Rhythm
+Rushing Rapids
+Remnant Spirit Catalysis
+Resonance of the Heart
+Safety Net I
+Safety Net II
+Safety Net III
+Searing Cool Touch
+Seismic Wave
+Selene's Awakening
+Shielding Smoke
+Share Your Power With Me
+Slumberscent
+Snow Cocoon
+Soaring Through the Nine Heavens
+Sonata of the Wind
+Soul of Electric Shock
+Soul of Falling Stars
+Spring Surge
+Spring of Healing
+Squirt Gun
+Star Glide
+Starfall Glide
+Starfall Rain
+Starlight Cascade
+Starlight Healing
+Starlit Glide
+Starry Flow
+Steady Breathing
+Steal the Spotlight
+Stealth Hunt
+Strange Flash
+Swift Beats
+Take Teammate's Power
+Time Bomb
+Trick Bomb
+Twirly Whispers
+Two Minds
+Vigor of Life
+Voice of Silence
+Voice of the Stars
+Water Pressure Imbalance
+Wind Guard
+Wind Shield
+Wind of Regeneration
+Wind of Rejuvenation
+Winter's Warmth
+Wrath of the Sea
+Warriors Never Die
+Wolf Soul Energy
+Zephyr's Breath

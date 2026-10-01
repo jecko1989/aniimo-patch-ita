@@ -1,19 +1,19 @@
 {
-  "version": 36,
+  "version": 37,
   "date": "01/10/2026",
   "notes": "",
   "payloads": [
     {
       "id": "bin",
       "url": "Compress_id_ID.bin.gz",
-      "sha256": "90443f0540827f316dd21a14ac6730400d3f809236dbe44cf58db3040af1cff6",
-      "size": 4409084
+      "sha256": "34a24a985de901f6297f64aa72d64abf959274fb5ff32d01f10e178dcbb280c4",
+      "size": 4406848
     },
     {
       "id": "json",
       "url": "NewTextMap_id_ID.json.gz",
-      "sha256": "b9292f3417e166dcdf8eea43aef9bb4f1e6cab87c0b8ed3d271fdf77e926e365",
-      "size": 6520708
+      "sha256": "5b13cbb9cf3fbecc316edca0cf9d012d9e7bb1cc93417bbf7eb4d2332ab818a3",
+      "size": 6520667
     }
   ],
   "apply": [
