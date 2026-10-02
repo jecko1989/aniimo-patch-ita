@@ -67,7 +67,7 @@ for k in final:
         t = re.sub(r'[Ss]antuari(?:o)?', 'Sanctum', t)
     t = t.replace('Operation: Egg Heist', 'Operazione: Egg Heist')
     t = t.replace('Moondew Radish', 'Ravanello Moondew').replace('Ravanello rugiadalunare', 'Ravanello Moondew')
-    t = re.sub(r'([Pp]eperoncino) (?:di |della )?(?:luna crescente|lunacera)', r' della luna crescente', t)
+    t = re.sub(r'([Pp]eperoncino) (?:di |della )?(?:luna crescente|lunacera)', r'\1 della luna crescente', t)
     t = re.sub(r'([Aa])ccudiment', lambda m: ('N' if m.group(1) == 'A' else 'n') + 'utriment', t)    # nutrimento della Fioritura
     t = re.sub(r'([Aa])ccudisci', lambda m: 'Nutri' if m.group(1) == 'A' else 'nutri', t)
     t = re.sub(r'([Aa])ccudire', lambda m: 'Nutrire' if m.group(1) == 'A' else 'nutrire', t)
