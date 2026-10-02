@@ -68,6 +68,9 @@ for k in final:
     t = t.replace('Operation: Egg Heist', 'Operazione: Egg Heist')
     t = t.replace('Moondew Radish', 'Ravanello Moondew').replace('Ravanello rugiadalunare', 'Ravanello Moondew')
     t = re.sub(r'([Pp]eperoncino) (?:di |della )?(?:luna crescente|lunacera)', r' della luna crescente', t)
+    t = re.sub(r'([Aa])ccudiment', lambda m: ('N' if m.group(1) == 'A' else 'n') + 'utriment', t)    # nutrimento della Fioritura
+    t = re.sub(r'([Aa])ccudisci', lambda m: 'Nutri' if m.group(1) == 'A' else 'nutri', t)
+    t = re.sub(r'([Aa])ccudire', lambda m: 'Nutrire' if m.group(1) == 'A' else 'nutrire', t)
     final[k] = t
 final['1823332970'] = 'Italiano'    # etichetta dello slot lingua (era Indonesia)
 print('alfa residui:', sum(1 for k in final if 'lfa' in final[k] and 'Alpha' in en[k]))
