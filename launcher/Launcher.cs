@@ -238,6 +238,11 @@ class Launcher : Form
     {
         var root = Directory.GetParent(GameDir);
         var exe = root == null ? null : Path.Combine(root.FullName, "Aniimo.exe");
+        // Il login funziona solo se il gioco parte da Steam (app id 4126040)
+        if (GameDir.IndexOf("steamapps", StringComparison.OrdinalIgnoreCase) >= 0)
+        {
+            try { Process.Start(new ProcessStartInfo("steam://rungameid/4126040") { UseShellExecute = true }); Close(); return; } catch { }
+        }
         if (exe != null && File.Exists(exe)) { Process.Start(new ProcessStartInfo(exe) { WorkingDirectory = root.FullName }); Close(); }
         else MessageBox.Show("Non trovo Aniimo.exe accanto alla cartella Aniimo_Data.", "Aniimo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
     }
