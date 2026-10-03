@@ -1,19 +1,19 @@
 {
-  "version": 45,
+  "version": 46,
   "date": "03/10/2026",
-  "notes": "Chest -> Forziere; Cap. 7: 4 missioni",
+  "notes": "Correzioni numeri/segnaposto",
   "payloads": [
     {
       "id": "bin",
       "url": "Compress_id_ID.bin.gz",
-      "sha256": "642c7c5fdb5187e2bdda9a9690daad50c8cf9b5a9a4cfa704fe6d34cc222174b",
-      "size": 4409462
+      "sha256": "9a0ffbfc3551c190fdcc89d6133e7a170db9a168cd38dce95c5f9da69d852195",
+      "size": 4410025
     },
     {
       "id": "json",
       "url": "NewTextMap_id_ID.json.gz",
-      "sha256": "9620220e0847a6b05405a35d226290dccd8b5240cf95783dc21a6a1df5d217a5",
-      "size": 6524076
+      "sha256": "04e1f012f8eb925e27bafeb69097916b0af7b7f5169601c3159517ba793ffc06",
+      "size": 6524081
     }
   ],
   "apply": [
