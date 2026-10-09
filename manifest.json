@@ -1,19 +1,19 @@
 {
-  "version": 46,
-  "date": "03/10/2026",
+  "version": 45,
+  "date": "09/10/2026",
   "notes": "Correzioni numeri/segnaposto",
   "payloads": [
     {
       "id": "bin",
       "url": "Compress_id_ID.bin.gz",
-      "sha256": "9a0ffbfc3551c190fdcc89d6133e7a170db9a168cd38dce95c5f9da69d852195",
-      "size": 4410025
+      "sha256": "fafb9d32adac2d5443d9fb1541a44910c33ade4a09c2fc1045638859ad7a9729",
+      "size": 4411097
     },
     {
       "id": "json",
       "url": "NewTextMap_id_ID.json.gz",
-      "sha256": "04e1f012f8eb925e27bafeb69097916b0af7b7f5169601c3159517ba793ffc06",
-      "size": 6524081
+      "sha256": "fc7f41fcdcce085e212a7a5dca32d41a61f89a7017f417f133b259e3b980f4ff",
+      "size": 6526617
     }
   ],
   "apply": [

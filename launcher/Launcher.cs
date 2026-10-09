@@ -285,7 +285,16 @@ class Launcher : Form
         catch (Exception ex) { Status("Impossibile contattare il server della patch: " + ex.Message); }
     }
 
-    int InstalledVersion() { int v; return int.TryParse(Cfg("installedVersion"), out v) && Cfg("installedFor") == GameDir ? v : 0; }
+    // Identifica la versione del gioco: cambia quando Steam aggiorna i file (e ripristina i testi originali)
+    string GameStamp() { try { return File.ReadAllText(Path.Combine(LuaDir, "LuaCacheVer.txt")).Trim(); } catch { return ""; } }
+
+    int InstalledVersion()
+    {
+        int v;
+        if (!int.TryParse(Cfg("installedVersion"), out v) || Cfg("installedFor") != GameDir) return 0;
+        string st = Cfg("installedStamp");
+        return st != null && st != GameStamp() ? 0 : v;   // gioco aggiornato: la patch va riapplicata
+    }
     int RemoteVersion() { return manifest == null ? 0 : Convert.ToInt32(manifest["version"]); }
 
     void RefreshState()
@@ -328,7 +337,7 @@ class Launcher : Form
             Progress(60);
             Status("Applico la patch (può richiedere qualche secondo)...");
             await Task.Run(() => Apply(payloads));
-            cfg["installedVersion"] = RemoteVersion().ToString(); cfg["installedFor"] = GameDir; SaveCfg();
+            cfg["installedVersion"] = RemoteVersion().ToString(); cfg["installedFor"] = GameDir; cfg["installedStamp"] = GameStamp(); SaveCfg();
             Progress(100); if (!cli) RefreshState();
             Status("Fatto! Patch v" + RemoteVersion() + " installata. Avvia Aniimo e scegli \"Italiano\" nel menu lingua.");
         }
@@ -348,14 +357,20 @@ class Launcher : Form
     {
         Directory.CreateDirectory(BackupDir);
         string mark = Path.Combine(BackupDir, "for.txt");
-        if (File.Exists(mark) && File.ReadAllText(mark) == GameDir && File.Exists(Path.Combine(BackupDir, "LuaScripts.xdf"))) return; // backup gia' fatto
+        string want = GameDir + "|" + GameStamp();
+        if (File.Exists(mark) && File.Exists(Path.Combine(BackupDir, "LuaScripts.xdf")))
+        {
+            string have = File.ReadAllText(mark);
+            // formato vecchio (solo cartella): backup considerato valido; nuovo: deve essere della stessa versione del gioco
+            if (have == GameDir || have == want) return;
+        }
         File.Copy(Xdf, Path.Combine(BackupDir, "LuaScripts.xdf"), true);
         foreach (var t in Targets()) if (t[1] != null)
         {
             var src = Path.Combine(LuaDir, t[1]);
             if (File.Exists(src)) { var dst = Path.Combine(BackupDir, "loose", t[1]); Directory.CreateDirectory(Path.GetDirectoryName(dst)); File.Copy(src, dst, true); }
         }
-        File.WriteAllText(mark, GameDir);
+        File.WriteAllText(mark, want);
     }
 
     void Apply(Dictionary<string, byte[]> payloads)
