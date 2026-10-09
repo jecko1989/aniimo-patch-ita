@@ -26,5 +26,9 @@
       "payload": "json",
       "xdfEntry": "xfs/luascripts/Data/I18N/NewTextMap_id_ID.json"
     }
-  ]
+  ],
+  "launcher": {
+    "version": 9,
+    "url": "https://github.com/jecko1989/aniimo-patch-ita/releases/latest"
+  }
 }

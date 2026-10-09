@@ -21,6 +21,7 @@ class Launcher : Form
     const string DefaultManifestUrl = "__MANIFEST_URL__";
     static readonly string AppDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AniimoPatchITA");
     static readonly string CfgFile = Path.Combine(AppDir, "config.json");
+    const int LauncherVersion = 9;   // alzare insieme a "launcher.version" in manifest.json a ogni nuova release del launcher
     static readonly string BackupDir = Path.Combine(AppDir, "backup");
 
     TextBox txtPath = new TextBox();
@@ -134,6 +135,7 @@ class Launcher : Form
         btnRefresh.BringToFront();
 
         LoadBannerLocal();
+        lblVer.Click += delegate { string u = LauncherUpdateUrl(); if (u != null) try { Process.Start(new ProcessStartInfo(u) { UseShellExecute = true }); } catch { } };
         btnRefresh.Click += async delegate { Busy(true); Status("Controllo aggiornamenti..."); await FetchManifest(); Busy(false); RefreshState(); };
         btnBrowse.Click += delegate { Browse(); };
         btnInstall.Click += async delegate { await Install(); };
@@ -295,6 +297,17 @@ class Launcher : Form
         string st = Cfg("installedStamp");
         return st != null && st != GameStamp() ? 0 : v;   // gioco aggiornato: la patch va riapplicata
     }
+    // Aggiornamento del launcher: l'URL della release se online ce n'e' una piu' recente, altrimenti null
+    string LauncherUpdateUrl()
+    {
+        try
+        {
+            var l = manifest == null || !manifest.ContainsKey("launcher") ? null : manifest["launcher"] as Dictionary<string, object>;
+            if (l != null && Convert.ToInt32(l["version"]) > LauncherVersion) return (string)l["url"];
+        }
+        catch { }
+        return null;
+    }
     int RemoteVersion() { return manifest == null ? 0 : Convert.ToInt32(manifest["version"]); }
 
     void RefreshState()
@@ -304,6 +317,10 @@ class Launcher : Form
         btnRestore.Enabled = ok && File.Exists(Path.Combine(BackupDir, "LuaScripts.xdf"));
         int inst = InstalledVersion(), rem = RemoteVersion();
         lblVer.Text = manifest == null ? "Versione online: n/d" : "Versione online: v" + rem + " (" + manifest["date"] + ")   |   Installata: " + (inst > 0 ? "v" + inst : "nessuna");
+        bool lu = LauncherUpdateUrl() != null;
+        if (lu) lblVer.Text += "   |   Nuovo launcher disponibile: clicca qui per scaricarlo";
+        lblVer.Cursor = lu ? Cursors.Hand : Cursors.Default;
+        lblVer.ForeColor = lu ? Color.FromArgb(255, 200, 90) : Color.FromArgb(200, 220, 240);
         if (!ok) { btnInstall.Enabled = false; Status(GameDir.Length == 0 ? "Indica la cartella Aniimo_Data del gioco con \"Sfoglia...\"." : "Cartella non valida: non trovo cvs\\res\\lua\\LuaScripts.xdf al suo interno. Seleziona la cartella Aniimo_Data del gioco."); return; }
         btnInstall.Enabled = manifest != null;
         if (manifest == null) return;
