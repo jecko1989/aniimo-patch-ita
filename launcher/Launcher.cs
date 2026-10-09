@@ -21,7 +21,7 @@ class Launcher : Form
     const string DefaultManifestUrl = "__MANIFEST_URL__";
     static readonly string AppDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AniimoPatchITA");
     static readonly string CfgFile = Path.Combine(AppDir, "config.json");
-    const int LauncherVersion = 10;   // impostato dal workflow dal tag launcher-vN (0 = build locale: nessun controllo)
+    const int LauncherVersion = 0;    // impostato dal workflow dal tag launcher-vN (0 = build locale: nessun controllo)
     static readonly string BackupDir = Path.Combine(AppDir, "backup");
 
     TextBox txtPath = new TextBox();
