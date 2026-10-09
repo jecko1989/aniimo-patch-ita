@@ -25,7 +25,7 @@ class Launcher : Form
     static readonly string BackupDir = Path.Combine(AppDir, "backup");
 
     TextBox txtPath = new TextBox();
-    Label lblStatus = new Label(), lblVer = new Label();
+    Label lblStatus = new Label(), lblVer = new Label(), lblUpd = new Label();
     ProgressBar prog = new ProgressBar();
     Button btnBrowse = new Button(), btnInstall = new Button(), btnPlay = new Button(), btnRestore = new Button(), btnRefresh = new Button();
     Dictionary<string, object> manifest;
@@ -131,11 +131,14 @@ class Launcher : Form
                 b.BackColor = b.Enabled ? (Color)b.Tag : Color.FromArgb(30, 36, 48);
                 b.ForeColor = b.Enabled ? Color.White : Color.FromArgb(100, 112, 130);
             };
-        Controls.AddRange(new Control[] { banner, lblVer, lblP, txtPath, btnBrowse, lblStatus, prog, btnInstall, btnPlay, btnRestore, btnRefresh });
+        Controls.AddRange(new Control[] { banner, lblVer, lblUpd, lblP, txtPath, btnBrowse, lblStatus, prog, btnInstall, btnPlay, btnRestore, btnRefresh });
         btnRefresh.BringToFront();
 
         LoadBannerLocal();
-        lblVer.Click += delegate { string u = LauncherUpdateUrl(); if (u != null) try { Process.Start(new ProcessStartInfo(u) { UseShellExecute = true }); } catch { } };
+        lblUpd.AutoSize = true; lblUpd.Visible = false; lblUpd.Cursor = Cursors.Hand; lblUpd.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
+        lblUpd.ForeColor = Color.FromArgb(255, 200, 90); lblUpd.Text = "Nuovo launcher disponibile: scarica";
+        lblUpd.Location = new Point(BannerW - 30 - lblUpd.PreferredWidth, BannerH + 4);
+        lblUpd.Click += delegate { string u = LauncherUpdateUrl(); if (u != null) try { Process.Start(new ProcessStartInfo(u) { UseShellExecute = true }); } catch { } };
         btnRefresh.Click += async delegate { Busy(true); Status("Controllo aggiornamenti..."); await FetchManifest(); Busy(false); RefreshState(); };
         btnBrowse.Click += delegate { Browse(); };
         btnInstall.Click += async delegate { await Install(); };
@@ -318,9 +321,7 @@ class Launcher : Form
         int inst = InstalledVersion(), rem = RemoteVersion();
         lblVer.Text = manifest == null ? "Versione online: n/d" : "Versione online: v" + rem + " (" + manifest["date"] + ")   |   Installata: " + (inst > 0 ? "v" + inst : "nessuna");
         bool lu = LauncherUpdateUrl() != null;
-        if (lu) lblVer.Text += "   |   Nuovo launcher disponibile: clicca qui per scaricarlo";
-        lblVer.Cursor = lu ? Cursors.Hand : Cursors.Default;
-        lblVer.ForeColor = lu ? Color.FromArgb(255, 200, 90) : Color.FromArgb(200, 220, 240);
+        lblUpd.Visible = lu;
         if (!ok) { btnInstall.Enabled = false; Status(GameDir.Length == 0 ? "Indica la cartella Aniimo_Data del gioco con \"Sfoglia...\"." : "Cartella non valida: non trovo cvs\\res\\lua\\LuaScripts.xdf al suo interno. Seleziona la cartella Aniimo_Data del gioco."); return; }
         btnInstall.Enabled = manifest != null;
         if (manifest == null) return;
