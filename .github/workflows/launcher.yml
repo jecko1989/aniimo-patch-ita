@@ -1,17 +1,31 @@
 name: Build launcher
+# Per rilasciare un nuovo launcher basta creare il tag: git tag launcher-v10 && git push origin launcher-v10
+# Il numero nel tag diventa la versione dell'exe e aggiorna launcher.version in manifest.json.
 on:
+  push:
+    tags: ["launcher-v*"]
   workflow_dispatch:
     inputs:
       tag:
-        description: "Tag della release (es. launcher-v7)"
+        description: "Tag della release (es. launcher-v10)"
         required: true
 permissions:
   contents: write
+env:
+  TAG: ${{ inputs.tag || github.ref_name }}
 jobs:
   build:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Versione dal tag
+        shell: bash
+        run: |
+          V="${TAG#launcher-v}"
+          case "$V" in ''|*[!0-9]*) echo "Tag non valido: $TAG (atteso launcher-vN)"; exit 1;; esac
+          sed -i "s/LauncherVersion = 0;/LauncherVersion = $V;/" launcher/Launcher.cs
+          grep -n "LauncherVersion = $V;" launcher/Launcher.cs
+          echo "LV=$V" >> "$GITHUB_ENV"
       - name: Compila AniimoPatchITA.exe
         shell: cmd
         run: |
@@ -23,5 +37,20 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "${{ inputs.tag }}" launcher/AniimoPatchITA.exe --target "${{ github.sha }}" \
-            --title "Launcher" --notes "AniimoPatchITA.exe: scarica e applica la patch italiana di Aniimo (con backup e ripristino). Nuova grafica con immagine del gioco. Richiede solo Windows 10/11."
+          gh release create "$TAG" launcher/AniimoPatchITA.exe --target "${{ github.sha }}" \
+            --title "Launcher v$LV" --notes "AniimoPatchITA.exe: scarica e applica la patch italiana di Aniimo (con backup e ripristino). Richiede solo Windows 10/11."
+      - name: Aggiorna launcher.version nel manifest
+        shell: bash
+        run: |
+          git fetch origin main
+          git checkout -B main origin/main
+          python - <<'PY'
+          import json, os
+          m = json.load(open('manifest.json', encoding='utf-8'))
+          m['launcher'] = {'version': int(os.environ['LV']), 'url': 'https://github.com/${{ github.repository }}/releases/latest'}
+          json.dump(m, open('manifest.json', 'w', encoding='utf-8'), indent=2)
+          PY
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git commit -am "manifest: launcher v$LV" || exit 0
+          git push origin main

@@ -21,7 +21,7 @@ class Launcher : Form
     const string DefaultManifestUrl = "__MANIFEST_URL__";
     static readonly string AppDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AniimoPatchITA");
     static readonly string CfgFile = Path.Combine(AppDir, "config.json");
-    const int LauncherVersion = 9;   // alzare insieme a "launcher.version" in manifest.json a ogni nuova release del launcher
+    const int LauncherVersion = 0;   // impostato dal workflow dal tag launcher-vN (0 = build locale: nessun controllo)
     static readonly string BackupDir = Path.Combine(AppDir, "backup");
 
     TextBox txtPath = new TextBox();
@@ -303,7 +303,7 @@ class Launcher : Form
         try
         {
             var l = manifest == null || !manifest.ContainsKey("launcher") ? null : manifest["launcher"] as Dictionary<string, object>;
-            if (l != null && Convert.ToInt32(l["version"]) > LauncherVersion) return (string)l["url"];
+            if (LauncherVersion > 0 && l != null && Convert.ToInt32(l["version"]) > LauncherVersion) return (string)l["url"];
         }
         catch { }
         return null;
