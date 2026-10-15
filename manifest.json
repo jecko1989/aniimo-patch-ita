@@ -1,19 +1,19 @@
 {
-  "version": 47,
-  "date": "09/10/2026",
-  "notes": "Aggiornamento per la nuova versione del gioco (44 stringhe nuove, Held Item, Cultivate)",
+  "version": 48,
+  "date": "15/10/2026",
+  "notes": "Aggiornamento per la nuova versione del gioco (59 stringhe nuove, 211 modificate: Combo, tutorial Homeland, Pebbling, Omega, eventi Detective)",
   "payloads": [
     {
       "id": "bin",
       "url": "Compress_id_ID.bin.gz",
-      "sha256": "fafb9d32adac2d5443d9fb1541a44910c33ade4a09c2fc1045638859ad7a9729",
-      "size": 4411097
+      "sha256": "10d2e61b2fcd4240970f906718ec5f35ace5cfe1abe8c7d1ab2def40287de410",
+      "size": 4411458
     },
     {
       "id": "json",
       "url": "NewTextMap_id_ID.json.gz",
-      "sha256": "fc7f41fcdcce085e212a7a5dca32d41a61f89a7017f417f133b259e3b980f4ff",
-      "size": 6526617
+      "sha256": "6b515ff4c590fab05fc6692c5eb1e85da3a723696eb421b1609fadc3eb304ccd",
+      "size": 6530195
     }
   ],
   "apply": [
