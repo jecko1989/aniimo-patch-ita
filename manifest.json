@@ -1,19 +1,19 @@
 {
-  "version": 48,
-  "date": "15/10/2026",
-  "notes": "Aggiornamento per la nuova versione del gioco (59 stringhe nuove, 211 modificate: Combo, tutorial Homeland, Pebbling, Omega, eventi Detective)",
+  "version": 49,
+  "date": "16/10/2026",
+  "notes": "Aggiornamento per la nuova versione del gioco (53 stringhe nuove, 21 modificate: Harvest Gathering, regali a livelli, Glamour Star, forzieri)",
   "payloads": [
     {
       "id": "bin",
       "url": "Compress_id_ID.bin.gz",
-      "sha256": "10d2e61b2fcd4240970f906718ec5f35ace5cfe1abe8c7d1ab2def40287de410",
-      "size": 4411458
+      "sha256": "607cca19b0ca7c6393d105ff5bc43508dd0c2bf0fe038254298fc13cc7ba6680",
+      "size": 4412235
     },
     {
       "id": "json",
       "url": "NewTextMap_id_ID.json.gz",
-      "sha256": "6b515ff4c590fab05fc6692c5eb1e85da3a723696eb421b1609fadc3eb304ccd",
-      "size": 6530195
+      "sha256": "0d34a994121ca448adc9e525cbe0856a3e27690d08adea0986d4fb7138ebcfda",
+      "size": 6533279
     }
   ],
   "apply": [
