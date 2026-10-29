@@ -1,19 +1,19 @@
 {
-  "version": 49,
-  "date": "16/10/2026",
-  "notes": "Aggiornamento per la nuova versione del gioco (53 stringhe nuove, 21 modificate: Harvest Gathering, regali a livelli, Glamour Star, forzieri)",
+  "version": 50,
+  "date": "29/10/2026",
+  "notes": "Grosso aggiornamento del gioco: 22.369 testi nuovi, per ora in inglese (traduzione italiana in arrivo a ondate)",
   "payloads": [
     {
       "id": "bin",
       "url": "Compress_id_ID.bin.gz",
-      "sha256": "607cca19b0ca7c6393d105ff5bc43508dd0c2bf0fe038254298fc13cc7ba6680",
-      "size": 4412235
+      "sha256": "fd7df25288a48100fb2a01e439ed9a9ccc099d22dd44f2011548712426cd3a79",
+      "size": 5248164
     },
     {
       "id": "json",
       "url": "NewTextMap_id_ID.json.gz",
-      "sha256": "0d34a994121ca448adc9e525cbe0856a3e27690d08adea0986d4fb7138ebcfda",
-      "size": 6533279
+      "sha256": "c3d58d39dd0fd6012589be89270cc21ff18be041b6902476f6c12c62246963ef",
+      "size": 7845631
     }
   ],
   "apply": [
