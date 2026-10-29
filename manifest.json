@@ -1,19 +1,19 @@
 {
-  "version": 52,
+  "version": 53,
   "date": "29/10/2026",
-  "notes": "Traduzione italiana di dialoghi, storia e descrizioni del grosso aggiornamento (circa 11.100 testi in totale); alcuni nomi propri restano in inglese",
+  "notes": "Aggiornati circa 1.000 testi modificati dal gioco (etichette, ricompense, livelli camper, dialoghi)",
   "payloads": [
     {
       "id": "bin",
       "url": "Compress_id_ID.bin.gz",
-      "sha256": "8d1dd9f1700d478541acbd615e2384f0ee535fd597d1013fc7b3c728ccb50be0",
-      "size": 5293395
+      "sha256": "9541b29240bfea173aa6b97e465f81ab384419d6e55f532a4c47d588458f2b9d",
+      "size": 5292349
     },
     {
       "id": "json",
       "url": "NewTextMap_id_ID.json.gz",
-      "sha256": "5067c4da20addf40f610bd2a62ee7b6df7a641bacea60d49a8fb42de7eba8374",
-      "size": 7843039
+      "sha256": "e6a579b31cf69bb4303b2be8932d0a44eb1f42722755e4e48937574d7d8f6e7f",
+      "size": 7842661
     }
   ],
   "apply": [
