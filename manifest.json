@@ -1,19 +1,19 @@
 {
-  "version": 50,
+  "version": 51,
   "date": "29/10/2026",
-  "notes": "Grosso aggiornamento del gioco: 22.369 testi nuovi, per ora in inglese (traduzione italiana in arrivo a ondate)",
+  "notes": "Traduzione italiana di UI, oggetti e abilita' del grosso aggiornamento (circa 5.300 testi); i dialoghi nuovi restano in inglese per ora",
   "payloads": [
     {
       "id": "bin",
       "url": "Compress_id_ID.bin.gz",
-      "sha256": "fd7df25288a48100fb2a01e439ed9a9ccc099d22dd44f2011548712426cd3a79",
-      "size": 5248164
+      "sha256": "5ca79cbf1fa42d02c7cc394891833060040a552cd66d2e5651e69c61ba584737",
+      "size": 5254279
     },
     {
       "id": "json",
       "url": "NewTextMap_id_ID.json.gz",
-      "sha256": "c3d58d39dd0fd6012589be89270cc21ff18be041b6902476f6c12c62246963ef",
-      "size": 7845631
+      "sha256": "00e7f698be793bfa4bc59b629e5c99211708bf91063791adb2f1082f5cd2123d",
+      "size": 7842876
     }
   ],
   "apply": [
