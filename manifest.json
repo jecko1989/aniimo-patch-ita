@@ -1,19 +1,19 @@
 {
-  "version": 51,
+  "version": 52,
   "date": "29/10/2026",
-  "notes": "Traduzione italiana di UI, oggetti e abilita' del grosso aggiornamento (circa 5.300 testi); i dialoghi nuovi restano in inglese per ora",
+  "notes": "Traduzione italiana di dialoghi, storia e descrizioni del grosso aggiornamento (circa 11.100 testi in totale); alcuni nomi propri restano in inglese",
   "payloads": [
     {
       "id": "bin",
       "url": "Compress_id_ID.bin.gz",
-      "sha256": "5ca79cbf1fa42d02c7cc394891833060040a552cd66d2e5651e69c61ba584737",
-      "size": 5254279
+      "sha256": "8d1dd9f1700d478541acbd615e2384f0ee535fd597d1013fc7b3c728ccb50be0",
+      "size": 5293395
     },
     {
       "id": "json",
       "url": "NewTextMap_id_ID.json.gz",
-      "sha256": "00e7f698be793bfa4bc59b629e5c99211708bf91063791adb2f1082f5cd2123d",
-      "size": 7842876
+      "sha256": "5067c4da20addf40f610bd2a62ee7b6df7a641bacea60d49a8fb42de7eba8374",
+      "size": 7843039
     }
   ],
   "apply": [
