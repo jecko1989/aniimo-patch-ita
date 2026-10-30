@@ -1,19 +1,19 @@
 {
-  "version": 53,
-  "date": "29/10/2026",
-  "notes": "Aggiornati circa 1.000 testi modificati dal gioco (etichette, ricompense, livelli camper, dialoghi)",
+  "version": 54,
+  "date": "30/10/2026",
+  "notes": "Aggiornati circa 100 testi modificati dal gioco (etichette, descrizioni abilita', eventi, oggetti)",
   "payloads": [
     {
       "id": "bin",
       "url": "Compress_id_ID.bin.gz",
-      "sha256": "9541b29240bfea173aa6b97e465f81ab384419d6e55f532a4c47d588458f2b9d",
-      "size": 5292349
+      "sha256": "b4e44285e75eba75de5d29783ba6c67db893fae3ab2d53e4593620a1348a8957",
+      "size": 5293167
     },
     {
       "id": "json",
       "url": "NewTextMap_id_ID.json.gz",
-      "sha256": "e6a579b31cf69bb4303b2be8932d0a44eb1f42722755e4e48937574d7d8f6e7f",
-      "size": 7842661
+      "sha256": "b22e94fd94bc3bd6060c2109dab236a01eafed837361817c21958edc5d7dc790",
+      "size": 7842662
     }
   ],
   "apply": [
